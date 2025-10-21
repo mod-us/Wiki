@@ -16,18 +16,18 @@ Sales Wiki provides standardized definitions, formulas, and worked examples for 
 ### Installation
 
 ```bash
+nvm install 20
+nvm use 20
 npm install
 ```
 
 ### Local Development
 
 ```bash
-npm start
+npm run start
 ```
 
 This starts a local development server at `http://localhost:3000/`.
-
-### Build
 
 ```bash
 npm run build
@@ -61,21 +61,3 @@ sales-wiki/
 ├── static/               # Static assets
 └── docusaurus.config.ts  # Site configuration
 ```
-
-## Technology
-
-Built with [Docusaurus](https://docusaurus.io/), a modern static site generator.
-
-## License
-
-MIT License - see [LICENSE](./LICENSE) for details.
-
-## Community
-
-- **GitHub Issues**: Bug reports, feature requests
-- **Pull Requests**: Contributions welcome
-- **Discussions**: Share ideas and feedback
-
----
-
-Built by the sales operations community.
