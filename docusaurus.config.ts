@@ -60,22 +60,21 @@ const config: Config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
-      title: 'Sales Wiki',
+      title: 'Sales Knowledge Base HQ',
+      logo: {
+        alt: 'Modus Logo',
+        src: 'img/Modus Logo Final.png',
+        height: 32,
+      },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Docs',
-        },
         {
           to: '/docs/intro',
           label: 'Glossary',
           position: 'left'
         },
         {
-          to: '/docs/playbooks/territory-planning',
-          label: 'Playbooks',
+          to: '/benchmark-qa',
+          label: 'Benchmark Q&A',
           position: 'left'
         },
         {
@@ -83,40 +82,12 @@ const config: Config = {
           label: 'Contribute',
           position: 'left'
         },
-        {
-          href: 'https://github.com/your-org/sales-wiki',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Resources',
-          items: [
-            {
-              label: 'Contributing',
-              to: '/docs/contributing',
-            },
-            {
-              label: 'Code of Conduct',
-              to: '/docs/code-of-conduct',
-            },
-          ],
-        },
-        {
-          title: 'Connect',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/your-org/sales-wiki',
-            },
-          ],
-        },
-      ],
-      copyright: `© ${new Date().getFullYear()} Sales Wiki contributors · MIT`,
+      style: 'light',
+      links: [],
+      copyright: `© ${new Date().getFullYear()} People OS, Inc.`,
     },
     prism: {
       theme: prismThemes.github,

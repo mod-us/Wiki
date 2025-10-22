@@ -1,0 +1,10 @@
+{
+  "label": "Metrics",
+  "position": 4,
+  "link": {
+    "type": "doc",
+    "id": "metrics/index"
+  },
+  "collapsible": true,
+  "collapsed": true
+}

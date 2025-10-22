@@ -1,0 +1,10 @@
+{
+  "label": "Playbooks",
+  "position": 5,
+  "link": {
+    "type": "doc",
+    "id": "playbooks/index"
+  },
+  "collapsible": true,
+  "collapsed": true
+}

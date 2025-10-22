@@ -1,0 +1,10 @@
+{
+  "label": "Foundations",
+  "position": 2,
+  "link": {
+    "type": "doc",
+    "id": "foundations/index"
+  },
+  "collapsible": true,
+  "collapsed": true
+}
