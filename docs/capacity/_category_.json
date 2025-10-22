@@ -1,0 +1,10 @@
+{
+  "label": "Capacity",
+  "position": 3,
+  "link": {
+    "type": "doc",
+    "id": "capacity/index"
+  },
+  "collapsible": true,
+  "collapsed": true
+}

@@ -27,6 +27,7 @@ function Card({ title, desc, pill, link }) {
 
 export default function SalesWikiHome() {
   const [query, setQuery] = useState("");
+  const [aiQuery, setAiQuery] = useState("");
 
   const sampleTerms = [
     {
@@ -58,6 +59,12 @@ export default function SalesWikiHome() {
       desc: "Balance potential, ramp, and role mix. Revisit quarterly. Document diffs.",
       pill: "Playbook",
       link: "/docs/playbooks/territory-planning"
+    },
+    {
+      title: "Attrition Rate",
+      desc: "Percentage of reps who leave within a given period. Track voluntary vs involuntary.",
+      pill: "Metric",
+      link: "/docs/metrics/attrition-rate"
     },
   ];
 
@@ -92,29 +99,31 @@ export default function SalesWikiHome() {
                 </p>
                 <div className="search-container">
                   <div className="search-box">
-                    <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <path d="m21 21-4.35-4.35"></path>
+                    <svg className="sparkles-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 22.5l-.394-1.933a2.25 2.25 0 00-1.423-1.423L12.75 18.75l1.933-.394a2.25 2.25 0 001.423-1.423l.394-1.933.394 1.933a2.25 2.25 0 001.423 1.423l1.933.394-1.933.394a2.25 2.25 0 00-1.423 1.423z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                     <input
-                      placeholder="Search terms e.g. RRE, recovered gap…"
-                      value={query}
-                      onChange={e => setQuery(e.target.value)}
+                      placeholder="Ask AI about benchmarks... e.g., 'What's the average AE ramp time?'"
+                      value={aiQuery}
+                      onChange={e => setAiQuery(e.target.value)}
+                      onKeyPress={e => e.key === 'Enter' && aiQuery.trim() && (window.location.href = `/sales-wiki/benchmark-qa?q=${encodeURIComponent(aiQuery)}`)}
                       className="search-input"
                     />
                   </div>
-                  <Link to="/docs/intro" className="browse-button">
-                    Browse Glossary
-                  </Link>
+                  <button
+                    onClick={() => {
+                      if (aiQuery.trim()) {
+                        window.location.href = `/sales-wiki/benchmark-qa?q=${encodeURIComponent(aiQuery)}`;
+                      } else {
+                        window.location.href = `/sales-wiki/benchmark-qa`;
+                      }
+                    }}
+                    className="browse-button"
+                  >
+                    Ask Modus
+                  </button>
                 </div>
                 <div className="hero-links">
-                  <div className="hero-link-item">
-                    <svg className="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                    </svg>
-                    MIT Licensed
-                  </div>
                   <a href="https://github.com/your-org/sales-wiki" className="hero-link-item">
                     <svg className="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                       <circle cx="12" cy="12" r="3"></circle>
@@ -138,26 +147,31 @@ export default function SalesWikiHome() {
 
               {/* Highlight panel */}
               <div className="highlight-panel">
+                <div className="highlight-panel-header">
+                  <h3 className="highlight-panel-title">Common questions to ask AI</h3>
+                  <Link to="/benchmark-qa" className="ask-ai-button">
+                    <svg className="ask-ai-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+                      <circle cx="8" cy="8" r="6" strokeWidth="1.5"></circle>
+                      <path d="M8 5v3m0 3h.01" strokeWidth="1.5" strokeLinecap="round"></path>
+                    </svg>
+                    Ask AI Agent
+                    <svg className="ask-ai-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+                      <path d="M6 4l4 4-4 4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                    </svg>
+                  </Link>
+                </div>
                 <div className="highlight-grid">
-                  <Link to="/docs/foundations" className="highlight-card">
-                    <p className="highlight-label">Getting started</p>
-                    <p className="highlight-title">Foundations</p>
-                    <p className="highlight-desc">Headcount vs Capacity, Ramp curves</p>
+                  <Link to="/benchmark-qa?q=What's the industry benchmark for sales rep ramp time?" className="highlight-card highlight-card-link">
+                    <p className="highlight-desc">What's the industry benchmark for sales rep ramp time?</p>
                   </Link>
-                  <Link to="/docs/metrics/rre" className="highlight-card">
-                    <p className="highlight-label">Key metric</p>
-                    <p className="highlight-title">RRE</p>
-                    <p className="highlight-desc">How to compute, examples, pitfalls</p>
+                  <Link to="/benchmark-qa?q=How do I calculate my team's current capacity vs target?" className="highlight-card highlight-card-link">
+                    <p className="highlight-desc">How do I calculate my team's current capacity vs target?</p>
                   </Link>
-                  <Link to="/docs/capacity/gaps" className="highlight-card">
-                    <p className="highlight-label">Capacity</p>
-                    <p className="highlight-title">Recovered vs Unrecovered Gap</p>
-                    <p className="highlight-desc">Backfill timing and lag effects</p>
+                  <Link to="/benchmark-qa?q=What's a good CAC payback period for our ARR?" className="highlight-card highlight-card-link">
+                    <p className="highlight-desc">What's a good CAC payback period for our ARR?</p>
                   </Link>
-                  <Link to="/docs/playbooks/territory-design" className="highlight-card">
-                    <p className="highlight-label">Playbooks</p>
-                    <p className="highlight-title">Territory Design</p>
-                    <p className="highlight-desc">Coverage models & quarterly reviews</p>
+                  <Link to="/benchmark-qa?q=How should I structure my sales territories?" className="highlight-card highlight-card-link">
+                    <p className="highlight-desc">How should I structure my sales territories?</p>
                   </Link>
                 </div>
               </div>
@@ -169,7 +183,21 @@ export default function SalesWikiHome() {
         <main className="main-content">
           <div className="section-header">
             <h2 className="section-title">Popular terms</h2>
-            <Link to="/docs/intro" className="see-all-link">See all</Link>
+            <div className="section-header-actions">
+              <div className="glossary-search-box">
+                <svg className="search-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input
+                  placeholder="Search glossary..."
+                  value={query}
+                  onChange={e => setQuery(e.target.value)}
+                  className="glossary-search-input"
+                />
+              </div>
+              <Link to="/docs/intro" className="see-all-link">Browse all</Link>
+            </div>
           </div>
           <div className="terms-grid">
             {filtered.map((s, i) => (
@@ -185,15 +213,6 @@ export default function SalesWikiHome() {
                 <li>No GitHub? Use <span className="text-accent">Suggest an edit</span> to submit a form; we'll convert it into an Issue.</li>
                 <li>Every new/updated term must include Definition, Formula, Example, References.</li>
               </ol>
-            </div>
-            <div className="info-card">
-              <h3 className="info-title">Design tokens</h3>
-              <ul className="token-list">
-                <li><span className="token-key">Colors:</span> Slate 900–950 base, Blue accents</li>
-                <li><span className="token-key">Type:</span> System sans (interchangeable with Inter)</li>
-                <li><span className="token-key">Corners:</span> rounded-2xl, soft shadows</li>
-                <li><span className="token-key">Layout:</span> max-w-6xl, roomy padding</li>
-              </ul>
             </div>
           </div>
         </main>
