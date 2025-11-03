@@ -1,11 +1,19 @@
 name: Build and Deploy to S3
 
 on:
+  push:
+    branches: [ master ]
+    paths:
+      - '**/**'
   pull_request:
     branches: [ master ]
     paths:
       - '**/**'
   workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   deploy:
