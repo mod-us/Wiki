@@ -1,9 +1,10 @@
 name: Build and Deploy to S3
 
 on:
-  push:
-    branches:
-      - master
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '**/**'
   workflow_dispatch:
 
 jobs:
