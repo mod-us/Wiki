@@ -393,11 +393,34 @@ body {
   border: 1px solid #e9e8ea;
   background-color: #fafafa;
   transition: all 0.2s;
+  position: relative;
 }
 
 .glossary-search-box:focus-within {
   border-color: #ea580c;
   background-color: #fff7ed;
+}
+
+.clear-search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+  color: #9ca3af;
+  transition: all 0.15s ease;
+}
+
+.clear-search-button:hover {
+  color: #6b7280;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'] .clear-search-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .search-icon-small {
@@ -735,7 +758,6 @@ body {
   color: #c74607;
   text-decoration: underline;
 }
-
 .markdown p {
   color: #374151;
   line-height: 1.7;
@@ -1907,3 +1929,4 @@ article blockquote {
     padding: 0.75rem 1rem;
   }
 }
+

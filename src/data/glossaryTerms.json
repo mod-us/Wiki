@@ -1,0 +1,170 @@
+[
+  {
+    "title": "Capacity Waterfall",
+    "desc": "Visual flow of sales capacity from beginning to end of quarter, showing gains and losses.",
+    "pill": "Capacity",
+    "link": "/docs/capacity/capacity-waterfall"
+  },
+  {
+    "title": "Current Capacity",
+    "desc": "Total selling power available right now, measured in dollars or RRE.",
+    "pill": "Capacity",
+    "link": "/docs/capacity/current-capacity"
+  },
+  {
+    "title": "Gap to Target",
+    "desc": "Difference between your target capacity and current capacity.",
+    "pill": "Capacity",
+    "link": "/docs/capacity/gap-to-target"
+  },
+  {
+    "title": "Loss Capacity",
+    "desc": "Total selling power lost to attrition and transfers in a period.",
+    "pill": "Capacity",
+    "link": "/docs/capacity/loss-capacity"
+  },
+  {
+    "title": "Recovered Gap",
+    "desc": "Portion of lost capacity regained via backfills, transfers, or ramp within the window.",
+    "pill": "Capacity",
+    "link": "/docs/capacity/recovered-gap"
+  },
+  {
+    "title": "Unrecovered Gap",
+    "desc": "Lost capacity not recovered within the measurement window (in $ or RRE).",
+    "pill": "Capacity",
+    "link": "/docs/capacity/unrecovered-gap"
+  },
+  {
+    "title": "Code of Conduct",
+    "desc": "Sales Wiki is an open, welcoming community for sales, RevOps, and finance.",
+    "pill": "Other",
+    "link": "/docs/code-of-conduct"
+  },
+  {
+    "title": "Contributing Guide",
+    "desc": "Thank you for contributing to Sales Wiki!",
+    "pill": "Other",
+    "link": "/docs/contributing"
+  },
+  {
+    "title": "Headcount vs Capacity",
+    "desc": "Headcount counts people; capacity measures productive selling power.",
+    "pill": "Foundations",
+    "link": "/docs/foundations/headcount-vs-capacity"
+  },
+  {
+    "title": "Ramp Curves",
+    "desc": "Model showing how new hire productivity increases from 0% to 100% over time.",
+    "pill": "Foundations",
+    "link": "/docs/foundations/ramp-curves"
+  },
+  {
+    "title": "What is Capacity Planning",
+    "desc": "Process of forecasting and managing sales team selling capacity.",
+    "pill": "Foundations",
+    "link": "/docs/foundations/what-is-capacity-planning"
+  },
+  {
+    "title": "Welcome to Sales Wiki",
+    "desc": "The canonical, open-source glossary for Sales Capacity & Performance metrics,.",
+    "pill": "Other",
+    "link": "/docs/intro"
+  },
+  {
+    "title": "Attrition Rate",
+    "desc": "Percentage of reps who leave within a given period. Track voluntary vs involuntary.",
+    "pill": "Metrics",
+    "link": "/docs/metrics/attrition-rate"
+  },
+  {
+    "title": "Backfill Rate",
+    "desc": "Percentage of lost capacity recovered through backfill hires in a period.",
+    "pill": "Metrics",
+    "link": "/docs/metrics/backfill-rate"
+  },
+  {
+    "title": "Capacity at Risk",
+    "desc": "Estimated sales capacity likely to be lost to attrition in coming period.",
+    "pill": "Metrics",
+    "link": "/docs/metrics/capacity-at-risk"
+  },
+  {
+    "title": "Productivity Metrics",
+    "desc": "Measures of individual and team output relative to capacity.",
+    "pill": "Metrics",
+    "link": "/docs/metrics/productivity-metrics"
+  },
+  {
+    "title": "Quarterly Quota",
+    "desc": "Revenue target assigned to a sales rep for a single quarter.",
+    "pill": "Metrics",
+    "link": "/docs/metrics/quarterly-quota"
+  },
+  {
+    "title": "Recovery Lag",
+    "desc": "Average time between when an employee leaves and replacement reaches same level.",
+    "pill": "Metrics",
+    "link": "/docs/metrics/recovery-lag"
+  },
+  {
+    "title": "RRE (Ramped Rep Equivalent)",
+    "desc": "Convert partially ramped reps into fully ramped equivalents for clean capacity math.",
+    "pill": "Metrics",
+    "link": "/docs/metrics/rre"
+  },
+  {
+    "title": "Sales Efficiency Ratio",
+    "desc": "Revenue growth per dollar of S&M spend. Spell out the exact variant used.",
+    "pill": "Metrics",
+    "link": "/docs/metrics/sales-efficiency-ratio"
+  },
+  {
+    "title": "Time to Backfill",
+    "desc": "Average days between employee departure and backfill start date.",
+    "pill": "Metrics",
+    "link": "/docs/metrics/time-to-backfill"
+  },
+  {
+    "title": "Attrition Management",
+    "desc": "Process to track, analyze, and respond to employee departures.",
+    "pill": "Playbooks",
+    "link": "/docs/playbooks/attrition-management"
+  },
+  {
+    "title": "Backfill Planning",
+    "desc": "Process of replacing departed sales employees to restore lost capacity.",
+    "pill": "Playbooks",
+    "link": "/docs/playbooks/backfill-planning"
+  },
+  {
+    "title": "Capacity Planning",
+    "desc": "Forecasting capacity needs and managing the gap between target and actual.",
+    "pill": "Playbooks",
+    "link": "/docs/playbooks/capacity-planning"
+  },
+  {
+    "title": "Hiring Planning",
+    "desc": "Determining when and how many sales hires needed to meet capacity targets.",
+    "pill": "Playbooks",
+    "link": "/docs/playbooks/hiring-planning"
+  },
+  {
+    "title": "Leave Management",
+    "desc": "Process for handling employee absences and minimizing capacity impact.",
+    "pill": "Playbooks",
+    "link": "/docs/playbooks/leave-management"
+  },
+  {
+    "title": "Quota Setting",
+    "desc": "Assigning revenue targets to reps based on capacity and market potential.",
+    "pill": "Playbooks",
+    "link": "/docs/playbooks/quota-setting"
+  },
+  {
+    "title": "Territory Planning Basics",
+    "desc": "Balance potential, ramp, and role mix. Revisit quarterly. Document diffs.",
+    "pill": "Playbooks",
+    "link": "/docs/playbooks/territory-planning"
+  }
+]

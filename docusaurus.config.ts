@@ -41,7 +41,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/your-org/sales-wiki/tree/main/',
+          editUrl: 'https://github.com/mod-us/Wiki/tree/main/',
         },
         blog: false,
         theme: {
@@ -72,16 +72,16 @@ const config: Config = {
           label: 'Glossary',
           position: 'left'
         },
-        {
-          to: '/benchmark-qa',
-          label: 'Benchmark Q&A',
-          position: 'left'
-        },
-        {
-          href: '#contribute',
-          label: 'Contribute',
-          position: 'left'
-        },
+        // {
+        //   to: '/benchmark-qa',
+        //   label: 'Benchmark Q&A',
+        //   position: 'left'
+        // },
+        // {
+        //   href: '#contribute',
+        //   label: 'Contribute',
+        //   position: 'left'
+        // },
       ],
     },
     footer: {

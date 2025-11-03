@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import Fuse from 'fuse.js';
+import glossaryTermsData from '../data/glossaryTerms.json';
 
 // Simple card component
 function Card({ title, desc, pill, link }) {
@@ -28,49 +30,42 @@ function Card({ title, desc, pill, link }) {
 export default function SalesWikiHome() {
   const [query, setQuery] = useState("");
   const [aiQuery, setAiQuery] = useState("");
-
-  const sampleTerms = [
-    {
-      title: "RRE (Ramped Rep Equivalent)",
-      desc: "Convert partially ramped reps into fully ramped equivalents for clean capacity math.",
-      pill: "Metric",
-      link: "/docs/metrics/rre"
-    },
-    {
-      title: "Recovered Gap",
-      desc: "Portion of lost capacity regained via backfills, transfers, or ramp within the window.",
-      pill: "Capacity",
-      link: "/docs/capacity/recovered-gap"
-    },
-    {
-      title: "Unrecovered Gap",
-      desc: "Lost capacity not recovered within the measurement window (in $ or RRE).",
-      pill: "Capacity",
-      link: "/docs/capacity/unrecovered-gap"
-    },
-    {
-      title: "Sales Efficiency Ratio",
-      desc: "Revenue growth per dollar of S&M spend. Spell out the exact variant used.",
-      pill: "Ratio",
-      link: "/docs/metrics/efficiency-ratio"
-    },
-    {
-      title: "Territory Planning Basics",
-      desc: "Balance potential, ramp, and role mix. Revisit quarterly. Document diffs.",
-      pill: "Playbook",
-      link: "/docs/playbooks/territory-planning"
-    },
-    {
-      title: "Attrition Rate",
-      desc: "Percentage of reps who leave within a given period. Track voluntary vs involuntary.",
-      pill: "Metric",
-      link: "/docs/metrics/attrition-rate"
-    },
+  const [searchResults, setSearchResults] = useState([]);
+  
+  // Get all glossary terms from our generated JSON
+  const allTerms = glossaryTermsData;
+  
+  // Featured/popular terms to show when no search is active
+  const popularTerms = [
+    "RRE (Ramped Rep Equivalent)",
+    "Recovered Gap",
+    "Unrecovered Gap",
+    "Sales Efficiency Ratio",
+    "Territory Planning Basics",
+    "Attrition Rate"
   ];
-
-  const filtered = sampleTerms.filter(s =>
-    !query || s.title.toLowerCase().includes(query.toLowerCase())
-  );
+  
+  // Initialize Fuse instance for fuzzy search
+  const fuse = new Fuse(allTerms, {
+    keys: ['title', 'desc'],
+    threshold: 0.4,
+    ignoreLocation: true
+  });
+  
+  // Update search results when query changes
+  useEffect(() => {
+    if (!query) {
+      // Show popular terms when no search query
+      const featured = allTerms.filter(term => 
+        popularTerms.includes(term.title)
+      );
+      setSearchResults(featured);
+    } else {
+      // Perform fuzzy search
+      const results = fuse.search(query).map(result => result.item);
+      setSearchResults(results);
+    }
+  }, [query]);
 
   return (
     <Layout
@@ -103,28 +98,60 @@ export default function SalesWikiHome() {
                       <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 22.5l-.394-1.933a2.25 2.25 0 00-1.423-1.423L12.75 18.75l1.933-.394a2.25 2.25 0 001.423-1.423l.394-1.933.394 1.933a2.25 2.25 0 001.423 1.423l1.933.394-1.933.394a2.25 2.25 0 00-1.423 1.423z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                     <input
-                      placeholder="Ask AI about benchmarks... e.g., 'What's the average AE ramp time?'"
+                      // AI input temporarily repurposed to glossary search; restore when AI is ready
+                      // placeholder="Ask AI about benchmarks... e.g., 'What's the average AE ramp time?'"
+                      placeholder="Search the glossary... e.g., 'AE ramp time'"
                       value={aiQuery}
                       onChange={e => setAiQuery(e.target.value)}
-                      onKeyPress={e => e.key === 'Enter' && aiQuery.trim() && (window.location.href = `/sales-wiki/benchmark-qa?q=${encodeURIComponent(aiQuery)}`)}
+                      onKeyPress={e => {
+                        if (e.key === 'Enter') {
+                          if (aiQuery.trim()) {
+                            // Try to find a direct match first
+                            const directMatch = allTerms.find(term => 
+                              term.title.toLowerCase() === aiQuery.trim().toLowerCase()
+                            );
+                            
+                            if (directMatch) {
+                              // If we have an exact match, go directly to that page
+                              window.location.href = directMatch.link;
+                            } else {
+                              // Otherwise, search in the glossary
+                              window.location.href = `/sales-wiki/docs/intro?q=${encodeURIComponent(aiQuery)}`;
+                            }
+                          } else {
+                            window.location.href = `/sales-wiki/docs/intro`;
+                          }
+                        }
+                      }}
                       className="search-input"
                     />
                   </div>
                   <button
                     onClick={() => {
                       if (aiQuery.trim()) {
-                        window.location.href = `/sales-wiki/benchmark-qa?q=${encodeURIComponent(aiQuery)}`;
+                        // Try to find a direct match first
+                        const directMatch = allTerms.find(term => 
+                          term.title.toLowerCase() === aiQuery.trim().toLowerCase()
+                        );
+                        
+                        if (directMatch) {
+                          // If we have an exact match, go directly to that page
+                          window.location.href = directMatch.link;
+                        } else {
+                          // Otherwise, search in the glossary
+                          window.location.href = `/sales-wiki/docs/intro?q=${encodeURIComponent(aiQuery)}`;
+                        }
                       } else {
-                        window.location.href = `/sales-wiki/benchmark-qa`;
+                        window.location.href = `/sales-wiki/docs/intro`;
                       }
                     }}
                     className="browse-button"
                   >
-                    Ask Modus
+                    Browse
                   </button>
                 </div>
                 <div className="hero-links">
-                  <a href="https://github.com/your-org/sales-wiki" className="hero-link-item">
+                  <a href="https://github.com/mod-us/Wiki" className="hero-link-item">
                     <svg className="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
@@ -133,6 +160,13 @@ export default function SalesWikiHome() {
                       <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
                     </svg>
                     Edit on GitHub
+                  </a>
+                  <a href="mailto:modus@himodus.com" className="hero-link-item">
+                    <svg className="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
+                      <path d="m22 6-10 7L2 6"></path>
+                    </svg>
+                    Report issues
                   </a>
                   <a href="#contribute" className="hero-link-item">
                     <svg className="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -146,9 +180,12 @@ export default function SalesWikiHome() {
               </div>
 
               {/* Highlight panel */}
-              <div className="highlight-panel">
+                <div className="highlight-panel">
                 <div className="highlight-panel-header">
-                  <h3 className="highlight-panel-title">Common questions to ask AI</h3>
+                  {/* <h3 className="highlight-panel-title">Common questions to ask AI</h3> */}
+                  <h3 className="highlight-panel-title">Common glossary questions</h3>
+                  {/** Temporarily hiding AI Agent CTA until AI is enabled */}
+                  {/**
                   <Link to="/benchmark-qa" className="ask-ai-button">
                     <svg className="ask-ai-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor">
                       <circle cx="8" cy="8" r="6" strokeWidth="1.5"></circle>
@@ -159,18 +196,42 @@ export default function SalesWikiHome() {
                       <path d="M6 4l4 4-4 4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                     </svg>
                   </Link>
+                  */}
                 </div>
                 <div className="highlight-grid">
+                  {/** Keep AI benchmark links for later enablement
                   <Link to="/benchmark-qa?q=What's the industry benchmark for sales rep ramp time?" className="highlight-card highlight-card-link">
                     <p className="highlight-desc">What's the industry benchmark for sales rep ramp time?</p>
                   </Link>
+                  */}
+                  <Link to="/docs/metrics/rre" className="highlight-card highlight-card-link">
+                    <p className="highlight-desc">What's the industry benchmark for sales rep ramp time?</p>
+                  </Link>
+
+                  {/** Keep AI benchmark links for later enablement
                   <Link to="/benchmark-qa?q=How do I calculate my team's current capacity vs target?" className="highlight-card highlight-card-link">
                     <p className="highlight-desc">How do I calculate my team's current capacity vs target?</p>
                   </Link>
+                  */}
+                  <Link to="/docs/capacity/gap-to-target" className="highlight-card highlight-card-link">
+                    <p className="highlight-desc">How do I calculate my team's current capacity vs target?</p>
+                  </Link>
+
+                  {/** Keep AI benchmark links for later enablement
                   <Link to="/benchmark-qa?q=What's a good CAC payback period for our ARR?" className="highlight-card highlight-card-link">
                     <p className="highlight-desc">What's a good CAC payback period for our ARR?</p>
                   </Link>
+                  */}
+                  <Link to="/docs/metrics/sales-efficiency-ratio" className="highlight-card highlight-card-link">
+                    <p className="highlight-desc">What's a good CAC payback period for our ARR?</p>
+                  </Link>
+
+                  {/** Keep AI benchmark links for later enablement
                   <Link to="/benchmark-qa?q=How should I structure my sales territories?" className="highlight-card highlight-card-link">
+                    <p className="highlight-desc">How should I structure my sales territories?</p>
+                  </Link>
+                  */}
+                  <Link to="/docs/playbooks/territory-planning" className="highlight-card highlight-card-link">
                     <p className="highlight-desc">How should I structure my sales territories?</p>
                   </Link>
                 </div>
@@ -195,14 +256,31 @@ export default function SalesWikiHome() {
                   onChange={e => setQuery(e.target.value)}
                   className="glossary-search-input"
                 />
+                {query && (
+                  <button 
+                    onClick={() => setQuery('')}
+                    className="clear-search-button"
+                    aria-label="Clear search"
+                  >
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none">
+                      <path d="M18 6L6 18M6 6l12 12" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                )}
               </div>
               <Link to="/docs/intro" className="see-all-link">Browse all</Link>
             </div>
           </div>
           <div className="terms-grid">
-            {filtered.map((s, i) => (
-              <Card key={i} title={s.title} desc={s.desc} pill={s.pill} link={s.link} />
-            ))}
+            {searchResults.length > 0 ? (
+              searchResults.map((term, i) => (
+                <Card key={i} title={term.title} desc={term.desc} pill={term.pill} link={term.link} />
+              ))
+            ) : (
+              <div className="no-results">
+                <p>No matching terms found. Try a different search or <Link to="/docs/intro">browse all terms</Link>.</p>
+              </div>
+            )}
           </div>
 
           <div className="info-grid">
