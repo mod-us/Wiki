@@ -1,0 +1,127 @@
+.editOptionsContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: transparent;
+  border: 2px solid #ea580c;
+  border-radius: 0.5rem;
+  color: #ea580c;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(234, 88, 12, 0.1);
+}
+
+.editOptionsContainer:hover .editButton {
+  background: #ea580c;
+  color: white;
+  box-shadow: 0 4px 8px rgba(234, 88, 12, 0.2);
+  transform: translateY(-1px);
+}
+
+.editOptionsContainer:hover .editIcon,
+.editOptionsContainer:hover .chevron {
+  stroke: white;
+}
+
+.editIcon {
+  width: 1rem;
+  height: 1rem;
+  stroke: #ea580c;
+  transition: stroke 0.2s ease;
+}
+
+.chevron {
+  width: 1rem;
+  height: 1rem;
+  stroke: #ea580c;
+  transition: all 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 300px;
+  background: white;
+  border: 2px solid #ea580c;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  text-decoration: none;
+  color: #1a1a1a;
+  transition: background 0.15s ease;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.dropdownItem:last-child {
+  border-bottom: none;
+}
+
+.dropdownItem:hover {
+  background: #fff5f0;
+}
+
+.optionIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: #ea580c;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.optionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.optionTitle {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+}
+
+.optionDesc {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dropdown {
+    right: auto;
+    left: 0;
+  }
+}
