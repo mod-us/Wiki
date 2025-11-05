@@ -172,7 +172,7 @@ export default function SalesWikiHome() {
                   </button>
                 </div>
                 <div className="hero-links">
-                  <a href="https://github.com/mod-us/Wiki" className="hero-link-item">
+                  <a href="https://github.com/mod-us/Wiki" target="_blank" rel="noopener noreferrer" className="hero-link-item">
                     <svg className="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                       <circle cx="12" cy="12" r="3"></circle>
                       <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
@@ -189,6 +189,16 @@ export default function SalesWikiHome() {
                     </svg>
                     Report issues
                   </a>
+                  {/* Temporarily using Google Form instead of #contribute page */}
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLScrmWMCFtVfhCd5McZKIt86izOXB9Fdsh9qD_6LNCkXjk1x9Q/viewform" target="_blank" rel="noopener noreferrer" className="hero-link-item">
+                    <svg className="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    Suggest an edit
+                  </a>
+                  {/* Original link to contribute page - restore when ready:
                   <a href="#contribute" className="hero-link-item">
                     <svg className="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -197,6 +207,7 @@ export default function SalesWikiHome() {
                     </svg>
                     Suggest an edit
                   </a>
+                  */}
                 </div>
               </div>
 
