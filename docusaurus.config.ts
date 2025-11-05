@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Sales Wiki',
   tagline: 'The canonical, open-source glossary for Sales Capacity & Performance',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/Modus-icon-logo-wiki.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -52,8 +52,8 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    // Social card for link previews (Twitter, Slack, etc.)
+    image: 'img/Modus-logo-for-wiki.png',
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: true,
