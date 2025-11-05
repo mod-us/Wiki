@@ -51,6 +51,29 @@ const config: Config = {
     ],
   ],
 
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        hashed: true,
+        language: ["en"],
+        highlightSearchTermsOnTargetPage: false,
+        explicitSearchResultPath: true,
+        indexDocs: true,
+        indexBlog: false,
+        indexPages: true,
+        docsRouteBasePath: '/docs',
+        // Show full words in search results, not just matched characters
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+        // Improves relevance - shows complete terms
+        ignoreFiles: [],
+        // Removes the highlight from search bar input
+        removeDefaultStemmer: false,
+      },
+    ],
+  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
