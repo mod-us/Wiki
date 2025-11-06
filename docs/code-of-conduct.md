@@ -32,7 +32,7 @@ Violations may result in:
 2. Temporary ban from contributing
 3. Permanent ban for severe or repeated violations
 
-Report violations by emailing [conduct@sales-wiki.org](mailto:conduct@sales-wiki.org) or opening a private issue.
+Report violations by emailing [hello@himodus.com](mailto:hello@himodus.com) or opening a private issue.
 
 ## Attribution
 
