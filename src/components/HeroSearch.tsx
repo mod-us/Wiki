@@ -146,7 +146,7 @@ const HeroSearch: React.FC = () => {
   return (
     <div style={{ display: 'flex', alignItems: 'stretch', gap: '0.75rem', width: '100%', maxWidth: '100%' }}>
       {/* Search Input Container */}
-      <div style={{ position: 'relative', flex: 1, maxWidth: '500px' }}>
+      <div style={{ position: 'relative', width: '400px' }}>
         {/* Search Input */}
         <div
         style={{
@@ -345,23 +345,27 @@ const HeroSearch: React.FC = () => {
             history.push('/docs/intro');
           }
         }}
+        className="browse-button"
         style={{
-          padding: '0.75rem 1.5rem',
-          borderRadius: '0.5rem',
-          border: 'none',
+          alignItems: 'center',
           backgroundColor: '#ea580c',
-          fontSize: '0.875rem',
+          borderRadius: '0.5rem',
+          display: 'flex',
           fontWeight: 500,
+          height: '100%',
+          justifyContent: 'center',
+          padding: '0.75rem 1.5rem',
+          transition: 'background-color 0.2s',
+          whiteSpace: 'nowrap',
+          border: 'none',
+          fontSize: '0.875rem',
           color: '#ffffff',
           cursor: 'pointer',
-          whiteSpace: 'nowrap',
-          transition: 'background-color 0.2s',
-          height: '100%',
         }}
         onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#c74607')}
         onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ea580c')}
       >
-        {results.length > 0 ? 'Go to Result' : 'Browse'}
+        Browse
       </button>
     </div>
   );
