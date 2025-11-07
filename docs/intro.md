@@ -3,7 +3,7 @@ sidebar_position: 0
 title: Welcome to Sales Wiki
 ---
 
-# Welcome to Sales Wiki
+# Connor's sales wiki
 
 The canonical, open-source glossary for Sales Capacity & Performance metrics, formulas, and best practices.
 
