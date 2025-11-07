@@ -8,27 +8,28 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.625rem 1.25rem;
-  background: transparent;
-  border: 2px solid #ea580c;
+  background: transparent !important;
+  border: 2px solid #e9e8ea !important;
   border-radius: 0.5rem;
-  color: #ea580c;
+  color: #4b5563 !important;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(234, 88, 12, 0.1);
+  box-shadow: none !important;
 }
 
 .editOptionsContainer:hover .editButton {
-  background: #ea580c;
-  color: white;
-  box-shadow: 0 4px 8px rgba(234, 88, 12, 0.2);
+  background: #ea580c !important;
+  color: white !important;
+  border-color: #ea580c !important;
+  box-shadow: 0 4px 8px rgba(234, 88, 12, 0.2) !important;
   transform: translateY(-1px);
 }
 
 .editOptionsContainer:hover .editIcon,
 .editOptionsContainer:hover .chevron {
-  stroke: white;
+  stroke: white !important;
 }
 
 .editIcon {
@@ -41,7 +42,7 @@
 .chevron {
   width: 1rem;
   height: 1rem;
-  stroke: #ea580c;
+  stroke: #4b5563;
   transition: all 0.2s ease;
 }
 
@@ -55,7 +56,7 @@
   right: 0;
   min-width: 300px;
   background: white;
-  border: 2px solid #ea580c;
+  border: 2px solid #e9e8ea;
   border-radius: 0.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   z-index: 1000;
@@ -110,12 +111,12 @@
 .optionTitle {
   font-weight: 600;
   font-size: 0.9rem;
-  color: #1a1a1a;
+  color: #4b5563;
 }
 
 .optionDesc {
   font-size: 0.8rem;
-  color: #666;
+  color: #4b5563;
 }
 
 /* Responsive adjustments */
