@@ -33,14 +33,14 @@
   /* Local search plugin custom properties */
   --search-local-modal-background: #ffffff;
   --search-local-modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  --search-local-modal-width: 600px;
+  --search-local-modal-width: 500px;
   --search-local-spacing: 12px;
   --search-local-hit-background: #ffffff;
   --search-local-hit-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   --search-local-hit-color: #000000;
   --search-local-hit-height: 60px;
   --search-local-highlight-color: #ea580c;
-  --search-local-muted-color: #6b7280;
+  --search-local-muted-color: #9ca3af;
   --search-local-icon-stroke-width: 1.5;
   --search-local-hit-active-color: #000000;
   --search-local-input-active-border-color: #e9e8ea;
@@ -212,23 +212,22 @@ body {
   color: #9ca3af;
 }
 
-/* Browse button - commented out as it's been removed from homepage */
-/*
+/* Browse button */
 .browse-button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  border: none;
+  align-items: center;
   background-color: #ea580c;
-  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  display: flex;
   font-weight: 500;
-  color: #ffffff;
-  text-decoration: none;
+  height: 87%;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
   transition: background-color 0.2s;
   white-space: nowrap;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: none;
+  color: #ffffff;
+  font-size: 0.875rem;
+  text-decoration: none;
 }
 
 .browse-button:hover {
@@ -236,7 +235,6 @@ body {
   color: #ffffff;
   text-decoration: none;
 }
-*/
 
 .hero-links {
   margin-top: 1rem;
@@ -2345,6 +2343,8 @@ div[class*="dropdownMenu"] {
   background: #ffffff !important;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px #e9e8ea !important;
   border: 1px solid #e9e8ea !important;
+  width: 500px !important;
+  max-width: 500px !important;
 }
 
 /* Search input styling */
@@ -2403,25 +2403,43 @@ div[class*="hitTitle"] {
 /* Result path/breadcrumb - lighter gray to match hero search */
 .searchBar .dropdownMenu .suggestion div[class*="hitPath"],
 div[class*="suggestion"] div[class*="hitPath"],
-div[class*="hitPath"] {
+div[class*="hitPath"],
+[class*="hitPath"] {
   color: #9ca3af !important;
-  font-size: 0.75rem !important;
+  font-size: 0.72em !important;
   margin-top: 0.25rem !important;
+}
+
+/* Ensure ALL children in hitPath inherit the same color */
+[class*="hitPath"] *,
+div[class*="hitPath"] *,
+.hitPath *,
+[class*="hitPath"] mark,
+[class*="hitPath"] span,
+[class*="hitPath"] b,
+[class*="hitPath"] strong {
+  color: #9ca3af !important;
 }
 
 /* Remove highlighting from context path - only highlight the main title */
 .searchBar .dropdownMenu .suggestion div[class*="hitPath"] mark,
 div[class*="suggestion"] div[class*="hitPath"] mark,
-div[class*="hitPath"] mark {
+div[class*="hitPath"] mark,
+[class*="hitPath"] mark,
+.hitPath mark {
   background: none !important;
+  background-color: transparent !important;
   color: #9ca3af !important;
   font-weight: normal !important;
   padding: 0 !important;
   border: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
 }
 
-/* Highlighted/marked text in results - make it an inline badge */
-div[class*="hitWrapper"] mark {
+/* Highlighted/marked text in results - make it an inline badge - BUT ONLY IN TITLE */
+div[class*="hitWrapper"] div[class*="hitTitle"] mark,
+[class*="hitTitle"] mark {
   background-color: #fff7ed !important;
   color: #ea580c !important;
   font-weight: 700 !important;
@@ -2462,16 +2480,25 @@ div[class*="suggestion"][class*="cursor"] div[class*="hitTitle"] {
 
 /* Keep the path gray when hovered - lighter to match hero search */
 .searchBar .dropdownMenu .suggestion.cursor div[class*="hitPath"],
-div[class*="suggestion"][class*="cursor"] div[class*="hitPath"] {
+div[class*="suggestion"][class*="cursor"] div[class*="hitPath"],
+[class*="suggestion"][class*="cursor"] [class*="hitPath"] {
   color: #9ca3af !important;
 }
 
-/* Also remove highlighting from hovered path */
+/* Also remove highlighting from hovered path - VERY SPECIFIC */
 .searchBar .dropdownMenu .suggestion.cursor div[class*="hitPath"] mark,
-div[class*="suggestion"][class*="cursor"] div[class*="hitPath"] mark {
+div[class*="suggestion"][class*="cursor"] div[class*="hitPath"] mark,
+[class*="suggestion"][class*="cursor"] [class*="hitPath"] mark,
+.suggestion.cursor .hitPath mark,
+[class*="cursor"] [class*="hitPath"] mark {
   background: none !important;
+  background-color: transparent !important;
   color: #9ca3af !important;
   font-weight: normal !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
 }
 
 /* Keep icons gray and visible on hover */
