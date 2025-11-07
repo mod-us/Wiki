@@ -3,6 +3,7 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import Fuse from 'fuse.js';
 import glossaryTermsData from '../data/glossaryTerms.json';
+import HeroSearch from '../components/HeroSearch';
 
 // Simple card component
 function Card({ title, desc, pill, link }) {
@@ -153,23 +154,9 @@ export default function SalesWikiHome() {
                 </div>
                 */}
 
-                {/* NEW: Docusaurus native search message - search is now in navbar */}
+                {/* NEW: Functional hero search component */}
                 <div className="search-container">
-                  <div className="search-message-box">
-                    <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                    <span className="search-message-text">
-                      Use the search bar above or press <kbd>Ctrl</kbd>+<kbd>K</kbd> to search the glossary
-                    </span>
-                  </div>
-                  <button
-                    onClick={() => window.location.href = '/docs/intro'}
-                    className="browse-button"
-                  >
-                    Browse
-                  </button>
+                  <HeroSearch />
                 </div>
                 <div className="hero-links">
                   <a href="https://github.com/mod-us/Wiki" target="_blank" rel="noopener noreferrer" className="hero-link-item">
