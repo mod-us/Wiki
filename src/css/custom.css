@@ -29,6 +29,21 @@
   --ifm-code-font-size: 95%;
   --ifm-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  /* Local search plugin custom properties */
+  --search-local-modal-background: #ffffff;
+  --search-local-modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --search-local-modal-width: 500px;
+  --search-local-spacing: 12px;
+  --search-local-hit-background: #ffffff;
+  --search-local-hit-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --search-local-hit-color: #000000;
+  --search-local-hit-height: 60px;
+  --search-local-highlight-color: #ea580c;
+  --search-local-muted-color: #9ca3af;
+  --search-local-icon-stroke-width: 1.5;
+  --search-local-hit-active-color: #000000;
+  --search-local-input-active-border-color: #e9e8ea;
 }
 
 html[data-theme='dark'] {
@@ -154,6 +169,23 @@ body {
   width: 400px;
 }
 
+/* Hero search trigger - clickable search box */
+.hero-search-trigger {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.hero-search-trigger:hover {
+  border-color: #ea580c;
+  background-color: #fff7ed;
+  box-shadow: 0 2px 4px 0 rgba(234, 88, 12, 0.1);
+}
+
+.hero-search-trigger:active {
+  transform: scale(0.98);
+}
+
 .search-icon {
   width: 1.25rem;
   height: 1.25rem;
@@ -180,21 +212,22 @@ body {
   color: #9ca3af;
 }
 
+/* Browse button */
 .browse-button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  border: none;
+  align-items: center;
   background-color: #ea580c;
-  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  display: flex;
   font-weight: 500;
-  color: #ffffff;
-  text-decoration: none;
+  height: 87%;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
   transition: background-color 0.2s;
   white-space: nowrap;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: none;
+  color: #ffffff;
+  font-size: 0.875rem;
+  text-decoration: none;
 }
 
 .browse-button:hover {
@@ -1928,5 +1961,601 @@ article blockquote {
   .qa-input-container {
     padding: 0.75rem 1rem;
   }
+}
+
+/* ========================================
+   DOCUSAURUS LOCAL SEARCH STYLING
+   ======================================== */
+
+/* Style the search message box to look like the old input */
+.search-message-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e9e8ea;
+  background-color: #fafafa;
+  flex: 1;
+  min-width: 400px;
+}
+
+/* Local search plugin specific overrides */
+.aa-DetachedFormContainer,
+.aa-Panel {
+  background-color: #ffffff !important;
+  border: 1px solid #e9e8ea !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.aa-DetachedOverlay {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.aa-Form {
+  background-color: #ffffff !important;
+  border: 1px solid #e9e8ea !important;
+}
+
+.aa-Input {
+  color: #ea580c !important;
+  background-color: #ffffff !important;
+}
+
+/* Remove white highlight from input text */
+.aa-Input::selection {
+  background-color: #fff7ed !important;
+  color: #ea580c !important;
+}
+
+.aa-Item {
+  background-color: #ffffff !important;
+}
+
+.aa-Item[aria-selected="true"] {
+  background-color: #fff7ed !important;
+  border-color: #ea580c !important;
+}
+
+.aa-ItemContentTitle {
+  color: #000000 !important;
+}
+
+.aa-ItemContentDescription {
+  color: #6b7280 !important;
+}
+
+.search-message-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.search-message-text kbd {
+  display: inline-block;
+  padding: 0.125rem 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #ea580c;
+  background-color: transparent;
+  border: 1px solid #ea580c;
+  border-radius: 0.25rem;
+  box-shadow: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Navbar search button styling */
+.DocSearch-Button,
+:global(.navbar__search-input),
+.navbar__search-input,
+input.navbar__search-input {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  border: 1px solid #e9e8ea !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 0.75rem !important;
+  height: auto !important;
+  color: #ea580c !important;
+  transition: all 0.2s !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+.DocSearch-Button:hover,
+:global(.navbar__search-input):hover,
+.navbar__search-input:hover {
+  background-color: #fff7ed !important;
+  border-color: #ea580c !important;
+  box-shadow: 0 2px 4px 0 rgba(234, 88, 12, 0.15) !important;
+}
+
+/* Remove orange outline when focused/active - AGGRESSIVE OVERRIDE */
+.navbar__search-input:focus,
+input.navbar__search-input:focus,
+.navbar__search-input:active,
+input.navbar__search-input:active,
+input[class*="searchInput"]:focus,
+.searchInput_YFbd:focus,
+input[type="search"]:focus,
+.navbar__search input:focus,
+[role="combobox"]:focus {
+  outline: 0 !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0px !important;
+  outline-color: transparent !important;
+  border: 1px solid #e9e8ea !important;
+  border-color: #e9e8ea !important;
+  box-shadow: none !important;
+}
+
+/* Override any 2px outline styles */
+*:focus {
+  outline: none !important;
+}
+
+input:focus,
+input[type="search"]:focus {
+  outline: 0 !important;
+  outline-width: 0 !important;
+}
+
+/* Search input placeholder - match orange color */
+:global(.navbar__search-input)::placeholder {
+  color: #ea580c !important;
+}
+
+/* Remove selection highlight */
+:global(.navbar__search-input)::selection {
+  background-color: #fff7ed !important;
+  color: #ea580c !important;
+}
+
+.DocSearch-Button-Container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.DocSearch-Search-Icon {
+  color: #ea580c !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.DocSearch-Button-Placeholder {
+  font-size: 0.875rem !important;
+  color: #ea580c !important;
+}
+
+.DocSearch-Button-Keys {
+  display: flex !important;
+  gap: 0.25rem !important;
+}
+
+.DocSearch-Button-Key {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0.25rem !important;
+  color: #ea580c !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  padding: 0.125rem 0.375rem !important;
+  box-shadow: none !important;
+}
+
+/* Modal container with overlay */
+.DocSearch-Container {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  z-index: 9999 !important;
+}
+
+/* Search modal styling */
+.DocSearch-Modal {
+  background-color: #ffffff !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid #e9e8ea !important;
+  z-index: 10000 !important;
+}
+
+.DocSearch-SearchBar {
+  background-color: #ffffff !important;
+  border-radius: 0.75rem !important;
+  border: 1px solid #e9e8ea !important;
+  padding: 0.5rem !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+.DocSearch-Input {
+  color: #1a1a1a !important;
+  font-size: 1rem !important;
+}
+
+.DocSearch-Input::placeholder {
+  color: #9ca3af !important;
+}
+
+.DocSearch-MagnifierLabel {
+  color: #6b7280 !important;
+}
+
+.DocSearch-Reset {
+  color: #6b7280 !important;
+}
+
+.DocSearch-Cancel {
+  color: #1a1a1a !important;
+  background-color: #fafafa !important;
+  border: 1px solid #e9e8ea !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 500 !important;
+}
+
+.DocSearch-Cancel:hover {
+  background-color: #f3f4f6 !important;
+}
+
+/* Search results dropdown */
+.DocSearch-Dropdown {
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) inset !important;
+  border-top: 1px solid #e9e8ea !important;
+}
+
+.DocSearch-Hit {
+  border-radius: 0.5rem !important;
+  padding: 0.75rem !important;
+  border: 1px solid transparent !important;
+  background-color: #ffffff !important;
+  margin: 0.25rem 0.5rem !important;
+}
+
+.DocSearch-Hit[aria-selected='true'] {
+  background-color: #fff7ed !important;
+  border-color: #ea580c !important;
+  box-shadow: 0 2px 4px 0 rgba(234, 88, 12, 0.1) !important;
+}
+
+.DocSearch-Hit-title {
+  color: #000000 !important;
+  font-weight: 600 !important;
+  font-size: 0.9375rem !important;
+}
+
+.DocSearch-Hit-path {
+  color: #6b7280 !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+}
+
+.DocSearch-Hit-action {
+  color: #ea580c !important;
+}
+
+.DocSearch-Hit[aria-selected='true'] .DocSearch-Hit-action {
+  color: #c74607 !important;
+}
+
+.DocSearch-Hit-content-wrapper {
+  background-color: transparent !important;
+}
+
+/* Highlighted search terms - orange badge style */
+mark {
+  background-color: #fff7ed !important;
+  color: #ea580c !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 0.375rem !important;
+  font-weight: 600 !important;
+  border: 1px solid #fed7aa !important;
+}
+
+/* Search footer */
+.DocSearch-Footer {
+  background-color: #fafafa !important;
+  border-top: 1px solid #e9e8ea !important;
+  padding: 0.75rem !important;
+}
+
+.DocSearch-Commands {
+  color: #6b7280 !important;
+}
+
+.DocSearch-Commands-Key {
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 0.25rem !important;
+  color: #4b5563 !important;
+  padding: 0.125rem 0.375rem !important;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+/* No results state */
+.DocSearch-NoResults {
+  color: #4b5563 !important;
+}
+
+.DocSearch-NoResults-Prefill-List {
+  color: #6b7280 !important;
+}
+
+.DocSearch-NoResults .DocSearch-Screen-Icon {
+  color: #ea580c !important;
+}
+
+/* Start screen */
+.DocSearch-StartScreen {
+  color: #4b5563 !important;
+}
+
+.DocSearch-StartScreen .DocSearch-Help {
+  color: #6b7280 !important;
+  font-size: 0.875rem !important;
+}
+
+/* Loading state */
+.DocSearch-LoadingIndicator {
+  color: #ea580c !important;
+}
+
+/* Dropdown sections */
+.DocSearch-Dropdown-Container {
+  background-color: #ffffff !important;
+}
+
+.DocSearch-Dropdown section + section {
+  border-top: 1px solid #e9e8ea !important;
+}
+
+/* Section headers in results */
+.DocSearch-Hit-source {
+  color: #000000 !important;
+  font-weight: 700 !important;
+  font-size: 0.6875rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  background-color: #ffffff !important;
+  padding: 0.75rem 1rem !important;
+  margin: 0.5rem 0.5rem 0.25rem !important;
+  border-radius: 0 !important;
+  border-bottom: 2px solid #e9e8ea !important;
+}
+
+/* Ensure dropdown content has proper background */
+.DocSearch-Dropdown-Container {
+  background-color: #ffffff !important;
+}
+
+/* Add subtle separator between hit groups */
+.DocSearch-Hits:not(:last-child) {
+  border-bottom: 1px solid #f3f4f6 !important;
+  padding-bottom: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* ========================================
+   LOCAL SEARCH SPECIFIC OVERRIDES
+   ======================================== */
+
+/* Make dropdown menu white with proper shadow */
+div[class*="dropdownMenu"] {
+  background: #ffffff !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px #e9e8ea !important;
+  border: 1px solid #e9e8ea !important;
+  width: 500px !important;
+  max-width: 500px !important;
+}
+
+/* Search input styling */
+input[class*="searchInput"],
+input[type="search"].navbar__search-input {
+  background-color: #ffffff !important;
+  color: #ea580c !important;
+  border: 1px solid #e9e8ea !important;
+  caret-color: #ea580c !important;
+}
+
+input[class*="searchInput"]::placeholder,
+input[type="search"].navbar__search-input::placeholder {
+  color: #ea580c !important;
+}
+
+/* Remove any text selection styling that makes text invisible */
+input[class*="searchInput"]::selection,
+input[type="search"].navbar__search-input::selection {
+  background-color: #fff7ed !important;
+  color: #ea580c !important;
+}
+
+/* Style individual search results */
+div[class*="suggestion"] {
+  background: #ffffff !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e9e8ea !important;
+  border-radius: 0.5rem !important;
+  min-height: 60px !important;
+  height: auto !important;
+  padding: 0.75rem !important;
+}
+
+/* Result wrapper should allow multi-line text */
+div[class*="hitWrapper"] {
+  flex: 1 !important;
+  min-height: auto !important;
+  height: auto !important;
+}
+
+/* Selected/hovered result */
+div[class*="suggestion"][class*="cursor"] {
+  background-color: #fff7ed !important;
+  border-color: #ea580c !important;
+  box-shadow: 0 2px 4px 0 rgba(234, 88, 12, 0.15) !important;
+}
+
+/* Result title text */
+div[class*="hitTitle"] {
+  color: #000000 !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+}
+
+/* Result path/breadcrumb - lighter gray to match hero search */
+.searchBar .dropdownMenu .suggestion div[class*="hitPath"],
+div[class*="suggestion"] div[class*="hitPath"],
+div[class*="hitPath"],
+[class*="hitPath"] {
+  color: #9ca3af !important;
+  font-size: 0.72em !important;
+  margin-top: 0.25rem !important;
+}
+
+/* Ensure ALL children in hitPath inherit the same color */
+[class*="hitPath"] *,
+div[class*="hitPath"] *,
+.hitPath *,
+[class*="hitPath"] mark,
+[class*="hitPath"] span,
+[class*="hitPath"] b,
+[class*="hitPath"] strong {
+  color: #9ca3af !important;
+}
+
+/* Remove highlighting from context path - only highlight the main title */
+.searchBar .dropdownMenu .suggestion div[class*="hitPath"] mark,
+div[class*="suggestion"] div[class*="hitPath"] mark,
+div[class*="hitPath"] mark,
+[class*="hitPath"] mark,
+.hitPath mark {
+  background: none !important;
+  background-color: transparent !important;
+  color: #9ca3af !important;
+  font-weight: normal !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+/* Highlighted/marked text in results - make it an inline badge - BUT ONLY IN TITLE */
+div[class*="hitWrapper"] div[class*="hitTitle"] mark,
+[class*="hitTitle"] mark {
+  background-color: #fff7ed !important;
+  color: #ea580c !important;
+  font-weight: 700 !important;
+  padding: 0.125rem 0.375rem !important;
+  border-radius: 0.25rem !important;
+  border: 1px solid #fed7aa !important;
+  /* Don't break the word */
+  display: inline !important;
+  white-space: normal !important;
+}
+
+/* Show full text around the mark, not just the marked portion */
+div[class*="hitTitle"],
+div[class*="hitPath"] {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  line-height: 1.4 !important;
+}
+
+/* Active result - only the mark should change, not the whole text */
+div[class*="cursor"] mark {
+  background-color: #ea580c !important;
+  color: #ffffff !important;
+  border-color: #c74607 !important;
+}
+
+/* IMPORTANT: Keep ALL text and icons black when hovered */
+div[class*="suggestion"][class*="cursor"],
+div[class*="suggestion"][class*="cursor"] * {
+  color: inherit !important;
+}
+
+/* Explicitly keep the title black when hovered */
+div[class*="suggestion"][class*="cursor"] div[class*="hitTitle"] {
+  color: #000000 !important;
+}
+
+/* Keep the path gray when hovered - lighter to match hero search */
+.searchBar .dropdownMenu .suggestion.cursor div[class*="hitPath"],
+div[class*="suggestion"][class*="cursor"] div[class*="hitPath"],
+[class*="suggestion"][class*="cursor"] [class*="hitPath"] {
+  color: #9ca3af !important;
+}
+
+/* Also remove highlighting from hovered path - VERY SPECIFIC */
+.searchBar .dropdownMenu .suggestion.cursor div[class*="hitPath"] mark,
+div[class*="suggestion"][class*="cursor"] div[class*="hitPath"] mark,
+[class*="suggestion"][class*="cursor"] [class*="hitPath"] mark,
+.suggestion.cursor .hitPath mark,
+[class*="cursor"] [class*="hitPath"] mark {
+  background: none !important;
+  background-color: transparent !important;
+  color: #9ca3af !important;
+  font-weight: normal !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+/* Keep icons gray and visible on hover */
+div[class*="suggestion"][class*="cursor"] svg,
+div[class*="suggestion"][class*="cursor"] div[class*="hitTree"],
+div[class*="suggestion"][class*="cursor"] div[class*="hitIcon"],
+div[class*="suggestion"][class*="cursor"] div[class*="hitAction"] {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+/* Only the mark (highlighted search term) should be white text on orange */
+div[class*="suggestion"][class*="cursor"] mark {
+  background-color: #ea580c !important;
+  color: #ffffff !important;
+  border-color: #c74607 !important;
+}
+
+/* Search keyboard hint styling - NO outline */
+div[class*="searchHint"],
+span[class*="searchHint"] {
+  color: #ea580c !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-weight: 500 !important;
+}
+
+/* Hide or style the search bar action icons (gray boxes) */
+div[class*="searchBarContainer"] button,
+button[class*="searchClearButton"] {
+  background-color: transparent !important;
+  border: none !important;
+  color: #6b7280 !important;
+}
+
+/* Style the action icons in the search input */
+div[class*="hitAction"] svg,
+button[class*="searchClearButton"] svg {
+  color: #6b7280 !important;
+  background: none !important;
+}
+
+/* Remove background from any search-related buttons */
+.navbar__search button {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Fix the keyboard shortcut hint container to have white background */
+div[class*="searchHintContainer"],
+.searchHintContainer {
+  background-color: transparent !important;
+}
+
+div[class*="searchHintContainer"] > *,
+.searchHintContainer > * {
+  background-color: #ffffff !important;
 }
 

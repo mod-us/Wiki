@@ -3,6 +3,7 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import Fuse from 'fuse.js';
 import glossaryTermsData from '../data/glossaryTerms.json';
+import HeroSearch from '../components/HeroSearch';
 
 // Simple card component
 function Card({ title, desc, pill, link }) {
@@ -92,6 +93,7 @@ export default function SalesWikiHome() {
                 <p className="hero-subtitle">
                   Clear definitions. Explicit formulas. Worked examples. Written by and for RevOps, Sales, and Finance.
                 </p>
+                {/* OLD SEARCH BAR - Commented out in favor of Docusaurus native search
                 <div className="search-container">
                   <div className="search-box">
                     <svg className="sparkles-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -107,10 +109,10 @@ export default function SalesWikiHome() {
                         if (e.key === 'Enter') {
                           if (aiQuery.trim()) {
                             // Try to find a direct match first
-                            const directMatch = allTerms.find(term => 
+                            const directMatch = allTerms.find(term =>
                               term.title.toLowerCase() === aiQuery.trim().toLowerCase()
                             );
-                            
+
                             if (directMatch) {
                               // If we have an exact match, go directly to that page
                               window.location.href = directMatch.link;
@@ -130,10 +132,10 @@ export default function SalesWikiHome() {
                     onClick={() => {
                       if (aiQuery.trim()) {
                         // Try to find a direct match first
-                        const directMatch = allTerms.find(term => 
+                        const directMatch = allTerms.find(term =>
                           term.title.toLowerCase() === aiQuery.trim().toLowerCase()
                         );
-                        
+
                         if (directMatch) {
                           // If we have an exact match, go directly to that page
                           window.location.href = directMatch.link;
@@ -150,6 +152,12 @@ export default function SalesWikiHome() {
                     Browse
                   </button>
                 </div>
+                */}
+
+                {/* NEW: Functional hero search component */}
+                <div className="search-container">
+                  <HeroSearch />
+                </div>
                 <div className="hero-links">
                   <a href="https://github.com/mod-us/Wiki" target="_blank" rel="noopener noreferrer" className="hero-link-item">
                     <svg className="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -161,7 +169,7 @@ export default function SalesWikiHome() {
                     </svg>
                     Edit on GitHub
                   </a>
-                  <a href="mailto:modus@himodus.com" className="hero-link-item">
+                  <a href="mailto:hello@himodus.com" className="hero-link-item">
                     <svg className="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                       <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
                       <path d="m22 6-10 7L2 6"></path>
@@ -255,7 +263,8 @@ export default function SalesWikiHome() {
         <main className="main-content">
           <div className="section-header">
             <h2 className="section-title">Popular terms</h2>
-            <div className="section-header-actions">
+            {/* Temporarily commented out - Search and Browse all functionality */}
+            {/* <div className="section-header-actions">
               <div className="glossary-search-box">
                 <svg className="search-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <circle cx="11" cy="11" r="8"></circle>
@@ -268,7 +277,7 @@ export default function SalesWikiHome() {
                   className="glossary-search-input"
                 />
                 {query && (
-                  <button 
+                  <button
                     onClick={() => setQuery('')}
                     className="clear-search-button"
                     aria-label="Clear search"
@@ -280,7 +289,7 @@ export default function SalesWikiHome() {
                 )}
               </div>
               <Link to="/docs/intro" className="see-all-link">Browse all</Link>
-            </div>
+            </div> */}
           </div>
           <div className="terms-grid">
             {searchResults.length > 0 ? (
