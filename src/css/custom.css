@@ -731,7 +731,28 @@ body {
 }
 
 .navbar__brand:hover .navbar__title {
-  color: #ea580c;
+  color: #000000; /* Keep it black - no color change on hover */
+  text-decoration: none; /* No underline */
+}
+
+.navbar__title:hover {
+  text-decoration: none !important;
+}
+
+/* Keep navbar items visible on small screens - prevent Glossary from disappearing */
+@media (max-width: 996px) {
+  .navbar__items {
+    display: flex !important;
+  }
+
+  .navbar__toggle {
+    display: none !important;
+  }
+
+  /* Ensure items don't wrap and stay in one line */
+  .navbar__item {
+    display: flex !important;
+  }
 }
 
 /* Footer overrides */
