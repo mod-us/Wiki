@@ -144,9 +144,9 @@ const HeroSearch: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'flex', alignItems: 'stretch', gap: '0.75rem', width: '100%', maxWidth: '100%' }}>
+    <div style={{ display: 'flex', alignItems: 'stretch', gap: '0.75rem', width: '100%', maxWidth: '100%', flexWrap: 'wrap' }}>
       {/* Search Input Container */}
-      <div style={{ position: 'relative', width: '400px' }}>
+      <div style={{ position: 'relative', flex: '1 1 auto', minWidth: '250px', maxWidth: '400px' }}>
         {/* Search Input */}
         <div
         style={{
