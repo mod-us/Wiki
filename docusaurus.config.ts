@@ -74,6 +74,20 @@ const config: Config = {
     ],
   ],
 
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {
+        async: 'true',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-VBTXZT2QJ9',
+      },
+    },
+  ],
+
+  scripts: [
+    '/js/gtag.js',
+  ],
+
   themeConfig: {
     // Social card for link previews (Twitter, Slack, etc.)
     image: 'img/Modus-logo-for-wiki.png',
